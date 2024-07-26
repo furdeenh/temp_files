@@ -1,3 +1,4 @@
+
 import time
 import numpy as np
 import adafruit_ads1x15.ads1115 as ADS
@@ -121,6 +122,8 @@ def generate_heatmap(data, x_steps, y_steps):
     if row_data:  # Handle any remaining data
         if not forward:
             row_data.reverse()
+        while len(row_data) < samples_per_row:
+            row_data.append(np.nan)  # Pad with NaNs to ensure consistent row length
         data_matrix.append(row_data)
 
     # Convert to numpy array
